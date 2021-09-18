@@ -1,7 +1,6 @@
 import { test, expect, Page, BrowserContext } from '@playwright/test'
 
 test.describe.serial('serial suite', () => {
-
   let page: Page
   let context: BrowserContext
 
@@ -27,5 +26,4 @@ test.describe.serial('serial suite', () => {
     const title = page.locator('.navbar__inner .navbar__title')
     await expect(title).toHaveText('Playwright')
   })
-
 })

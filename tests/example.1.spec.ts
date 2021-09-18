@@ -6,22 +6,10 @@ const test = base.extend<{}, {
   playwrightPage: [async ({ browser }, use) => {
     const ctx = await browser.newContext()
 
-    await ctx.tracing.start({
-      snapshots: true,
-      screenshots: true,
-      name: 'example',
-    })
-
     const playwrightPage = await ctx.newPage()
     await playwrightPage.goto('https://playwright.dev/')
 
-    console.log('use before')
     await use(playwrightPage)
-    console.log('use after')
-
-    await ctx.tracing.stop({
-      path: '/tmp/trace-example.zip',
-    })
 
     await playwrightPage.close()
     await ctx.close()
